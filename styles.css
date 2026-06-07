@@ -54,6 +54,7 @@ a {
   border: 1px solid rgba(216, 224, 229, 0.82);
   border-radius: 8px;
   backdrop-filter: blur(18px);
+  animation: float-in 520ms ease both;
 }
 
 .site-header.is-scrolled {
@@ -129,6 +130,7 @@ main {
 .hero-content {
   max-width: 820px;
   min-width: 0;
+  animation: float-in 680ms 80ms ease both;
 }
 
 .eyebrow,
@@ -199,6 +201,7 @@ h3 {
 .button:hover,
 .button:focus-visible {
   transform: translateY(-1px);
+  box-shadow: 0 12px 26px rgba(17, 24, 39, 0.09);
   outline: none;
 }
 
@@ -240,6 +243,15 @@ h3 {
   border-radius: 8px;
   font-size: 0.82rem;
   font-weight: 850;
+  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+}
+
+.hero-proof span:hover,
+.work-tags li:hover,
+.project-card li:hover {
+  transform: translateY(-1px);
+  border-color: rgba(14, 124, 117, 0.32);
+  background: rgba(223, 243, 240, 1);
 }
 
 .profile-panel {
@@ -253,6 +265,7 @@ h3 {
   border: 1px solid rgba(216, 224, 229, 0.95);
   border-radius: 8px;
   box-shadow: var(--shadow);
+  animation: float-in 720ms 180ms ease both;
 }
 
 .profile-panel::before {
@@ -277,6 +290,12 @@ h3 {
   object-fit: cover;
   object-position: center 38%;
   box-shadow: 0 18px 42px rgba(17, 24, 39, 0.16);
+  transition: transform 260ms ease, box-shadow 260ms ease;
+}
+
+.profile-panel:hover .avatar {
+  transform: scale(1.025);
+  box-shadow: 0 22px 54px rgba(17, 24, 39, 0.2);
 }
 
 .profile-name {
@@ -446,6 +465,24 @@ h3 {
   box-shadow: 0 10px 30px rgba(17, 24, 39, 0.045);
 }
 
+.timeline-item,
+.project-card,
+.skills-grid article,
+.credential-grid article,
+.impact-strip article {
+  transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+}
+
+.timeline-item:hover,
+.project-card:hover,
+.skills-grid article:hover,
+.credential-grid article:hover,
+.impact-strip article:hover {
+  transform: translateY(-3px);
+  border-color: rgba(14, 124, 117, 0.26);
+  box-shadow: 0 18px 46px rgba(17, 24, 39, 0.085);
+}
+
 .project-card.featured {
   border-color: rgba(14, 124, 117, 0.34);
   background:
@@ -509,6 +546,49 @@ h3 {
   color: var(--accent-dark);
   font-weight: 850;
   text-decoration: none;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 620ms ease, transform 620ms ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes float-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 1ms !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 @media (max-width: 940px) {
